@@ -115,6 +115,21 @@ python run.py --input_folder [test_image_folder_path] \
               --HR
 ```
 
+#### How run on MacOS
+```
+conda create -n pytorch python=3.6.4
+conda activate pytorch;conda init zsh
+conda update --all
+conda install pytorch torchvision torchaudio -c pytorch
+conda install -n pytorch matplotlib opencv scikit-image dill easydict dlib tensorboardX
+pip install tensorboardX
+conda update --all    
+
+rm $HOME/Downloads/old/.DS_Store
+conda run py3 ./run.py --input_folder $HOME/Downloads/old --output_folder $HOME/Downloads/output --GPU -1 --with_scratch
+```
+
+
 Note: Please try to use the absolute path. The final results will be saved in `./output_path/final_output/`. You could also check the produced results of different steps in `output_path`.
 
 ### 2) Scratch Detection
