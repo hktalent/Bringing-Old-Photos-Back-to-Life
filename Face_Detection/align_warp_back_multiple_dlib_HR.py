@@ -431,6 +431,9 @@ if __name__ == "__main__":
         # 将 gamma 值设为超过 1 的值，增加亮度和对比度
         blended_gamma = exposure.adjust_gamma(blended, gamma=1.5)
 
+        # 将像素值的范围缩放到 [-1, 1] 内
+        blended_gamma = exposure.rescale_intensity(blended_gamma, in_range=(0, 1), out_range=(-1, 1))
+
         # 将图像转为 uint8 类型保存
         io.imsave(os.path.join(save_url, x), img_as_ubyte(blended_gamma))
 
