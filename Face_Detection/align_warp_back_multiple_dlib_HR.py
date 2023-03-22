@@ -216,21 +216,19 @@ def blur_blending(im1, im2, mask):
 
 def blur_blending_cv2(im1, im2, mask):
 
-    mask *= 255.0
+    mask = (mask * 255.0).astype(np.uint8) # 先将mask 转化为 uint8 类型
 
     kernel = np.ones((9, 9), np.uint8)
     mask = cv2.erode(mask, kernel, iterations=3)
 
     mask_blur = cv2.GaussianBlur(mask, (25, 25), 0)
-    mask_blur /= 255.0
+    mask_blur = mask_blur.astype(np.float64) / 255.0 # 将计算结果转为 float64
 
     im = im1 * mask_blur + (1 - mask_blur) * im2
 
-    im /= 255.0
     im = np.clip(im, 0.0, 1.0)
 
     return im
-
 
 # def Poisson_blending(im1,im2,mask):
 
