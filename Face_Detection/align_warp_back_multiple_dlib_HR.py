@@ -18,6 +18,7 @@ import time
 import cv2
 import os
 from skimage import img_as_ubyte
+from skimage import exposure
 import json
 import argparse
 import dlib
@@ -426,7 +427,12 @@ if __name__ == "__main__":
             blended = blur_blending_cv2(warped_back, blended, backward_mask)
             blended *= 255.0
 
-        io.imsave(os.path.join(save_url, x), img_as_ubyte(blended / 255.0))
+        # io.imsave(os.path.join(save_url, x), img_as_ubyte(blended / 255.0))
+        # 将 gamma 值设为超过 1 的值，增加亮度和对比度
+        blended_gamma = exposure.adjust_gamma(blended, gamma=1.5)
+
+        # 将图像转为 uint8 类型保存
+        io.imsave(os.path.join(save_url, x), img_as_ubyte(blended_gamma))
 
         count += 1
 
