@@ -434,6 +434,9 @@ if __name__ == "__main__":
         # 将像素值的范围缩放到 [-1, 1] 内
         blended_gamma = exposure.rescale_intensity(blended_gamma, in_range=(0, 1), out_range=(-1, 1))
 
+        # 增加对比度，将像素值的范围调整到 [0, 1] 内
+        blended_gamma = exposure.rescale_intensity(blended_gamma, in_range=(-1, 1), out_range=(0, 1))
+
         # 将图像转为 uint8 类型保存
         io.imsave(os.path.join(save_url, x), img_as_ubyte(blended_gamma))
 
