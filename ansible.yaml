@@ -28,7 +28,7 @@
   tasks:
   - name: git clone repo
     git:
-      repo: 'https://github.com/microsoft/Bringing-Old-Photos-Back-to-Life.git'
+      repo: 'https://github.com/hktalent/Bringing-Old-Photos-Back-to-Life.git'
       dest: Bringing-Old-Photos-Back-to-Life
       clone: yes
 
