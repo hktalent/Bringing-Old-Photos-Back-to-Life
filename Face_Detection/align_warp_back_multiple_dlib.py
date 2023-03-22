@@ -215,18 +215,16 @@ def blur_blending(im1, im2, mask):
 
 
 def blur_blending_cv2(im1, im2, mask):
-
-    mask *= 255.0
+    mask = (mask * 255.0).astype(np.uint8)
 
     kernel = np.ones((9, 9), np.uint8)
     mask = cv2.erode(mask, kernel, iterations=3)
 
-    mask_blur = cv2.GaussianBlur(mask, (25, 25), 0)
+    mask_blur = cv2.GaussianBlur(mask.astype(np.float64), (25, 25), 0)
     mask_blur /= 255.0
 
     im = im1 * mask_blur + (1 - mask_blur) * im2
 
-    im /= 255.0
     im = np.clip(im, 0.0, 1.0)
 
     return im
