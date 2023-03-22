@@ -1,4 +1,4 @@
-FROM nvidia/cuda:11.1-base-ubuntu20.04
+FROM nvidia/cuda:12.1.0-base-ubuntu20.04
 
 RUN apt update && DEBIAN_FRONTEND=noninteractive apt install git bzip2 wget unzip python3-pip python3-dev cmake libgl1-mesa-dev python-is-python3 libgtk2.0-dev -yq
 ADD . /app
