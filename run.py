@@ -101,6 +101,8 @@ if __name__ == "__main__":
         os.makedirs(stage_4_output_dir)
     for x in os.listdir(stage_1_results):
         img_dir = os.path.join(stage_1_results, x)
+        if not os.path.exists(img_dir):
+            os.makedirs(img_dir)
         shutil.copy(img_dir, stage_4_output_dir)
 
     print("Finish Stage 1 ...")
