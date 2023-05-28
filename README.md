@@ -47,8 +47,7 @@ cd ../../../
 
 ```
 cd Global/detection_models
-git clone https://github.com/vacancy/Synchronized-BatchNorm-PyTorch
-cp -rf Synchronized-BatchNorm-PyTorch/sync_batchnorm .
+cp -rf ../../Face_Enhancement/models/networks/Synchronized-BatchNorm-PyTorch/sync_batchnorm .
 cd ../../
 ```
 
@@ -65,12 +64,12 @@ Download the pretrained model, put the file `Face_Enhancement/checkpoints.zip` u
 
 ```
 cd Face_Enhancement/
-wget https://github.com/microsoft/Bringing-Old-Photos-Back-to-Life/releases/download/v1.0/face_checkpoints.zip
-unzip face_checkpoints.zip
+wget -c https://github.com/microsoft/Bringing-Old-Photos-Back-to-Life/releases/download/v1.0/face_checkpoints.zip
+unzip -o face_checkpoints.zip
 cd ../
 cd Global/
-wget https://github.com/microsoft/Bringing-Old-Photos-Back-to-Life/releases/download/v1.0/global_checkpoints.zip
-unzip global_checkpoints.zip
+wget -c https://github.com/microsoft/Bringing-Old-Photos-Back-to-Life/releases/download/v1.0/global_checkpoints.zip
+unzip -o global_checkpoints.zip
 cd ../
 ```
 
@@ -125,8 +124,9 @@ conda install -n pytorch matplotlib opencv scikit-image dill easydict dlib tenso
 pip install tensorboardX
 conda update --all    
 
-rm $HOME/Downloads/old/.DS_Store
-conda run py3 ./run.py --input_folder $HOME/Downloads/old --output_folder $HOME/Downloads/output --GPU -1 --with_scratch
+find . -name ".DS_Store" -delete
+conda run python ./run.py --input_folder $HOME/Downloads/old --output_folder $HOME/Downloads/output --GPU -1 --with_scratch
+python ./run.py --input_folder $PWD/test_images/old_w_scratch --output_folder $PWD/output  --GPU -1 --with_scratch
 ```
 
 

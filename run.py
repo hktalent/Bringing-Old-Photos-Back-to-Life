@@ -7,6 +7,8 @@ import shutil
 import sys
 from subprocess import call
 
+os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
+
 def run_cmd(command):
     try:
         call(command, shell=True)
